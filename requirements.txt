@@ -1,0 +1,22 @@
+# Aircrack-ng MCP Server - Dependências Python
+
+# MCP Framework
+mcp>=0.3.0
+
+# Tipo e validação
+pydantic>=2.0.0
+typing-extensions>=4.0.0
+
+# Asyncio (built-in no Python 3.8+)
+# pathlib (built-in)
+# json (built-in)
+# hashlib (built-in)
+# subprocess (built-in)
+# time (built-in)
+# os (built-in)
+# re (built-in)
+
+# Desenvolvimento (opcional)
+pytest>=7.0.0
+black>=22.0.0
+flake8>=5.0.0
