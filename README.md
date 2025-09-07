@@ -219,22 +219,29 @@ lsusb | grep -i wireless
 dmesg | grep -i wifi
 ```
 
-### Problema: Permissões negadas
+### Problema: Permissões sudo negadas
 ```bash
-# Verificar sudoers
+# Verificar se sudoers foi configurado corretamente
 sudo visudo -f /etc/sudoers.d/aircrack-mcp
 
-# Testar comando sudo
+# Testar comando sudo específico
 sudo -n airmon-ng
+
+# Se falhar, reconfigurar permissões
+echo "$USER ALL=(ALL) NOPASSWD: /usr/bin/airmon-ng, /usr/bin/airodump-ng, /usr/bin/aireplay-ng, /usr/bin/reaver, /usr/bin/wash, /usr/sbin/airmon-ng, /bin/timeout, /usr/bin/timeout" | sudo tee /etc/sudoers.d/aircrack-mcp
 ```
 
 ### Problema: MCP não conecta
 ```bash
-# Verificar logs
-journalctl -u claude-mcp -f
-
-# Testar servidor manualmente
+# Verificar se servidor está rodando
 python3 aircrack_advanced_mcp_server.py
+
+# Verificar configuração do Claude.ai
+# Caminho correto para venv/bin/python
+# Args corretos para o script
+
+# Verificar logs
+tail -f data/captures/pentest_activity.log
 ```
 
 ### Problema: Timeout em comandos
@@ -244,6 +251,21 @@ ps aux | grep -E "(NetworkManager|wpa_supplicant)"
 
 # Verificar interface
 iwconfig wlan1
+
+# Verificar se permissões sudo estão funcionando
+sudo -n timeout 5 airodump-ng --help
+```
+
+### Problema: "Arquivo de autorização não encontrado"
+```bash
+# Verificar se arquivo existe
+ls -la data/authorization.txt
+
+# Criar arquivo se necessário
+echo "Authorized for pentesting" > data/authorization.txt
+
+# Verificar variável de ambiente
+echo $PENTEST_AUTH_FILE
 ```
 
 ## Desenvolvimento
