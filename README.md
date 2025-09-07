@@ -177,32 +177,25 @@ system_status
 
 ## Funcionalidades Avançadas
 
-### Honeypot WiFi
-Execute o script de honeypot para criar um access point falso:
-```bash
-chmod +x honeypot_setup.sh
-sudo ./honeypot_setup.sh
-```
-
-### Monitor de Honeypot
-```bash
-python3 honeypot_monitor.py
-```
-
 ### Relatórios de Auditoria
 O servidor gera automaticamente relatórios detalhados das redes detectadas, incluindo:
 - Análise de segurança por canal
 - Distribuição de fabricantes
 - Redes vulneráveis (WPS habilitado)
 - Recomendações de segurança
+- Estatísticas de potência de sinal
+
+### Integração com Hashcat
+Suporte para análise avançada de handshakes capturados:
+- Conversão automática para formato hashcat
+- Testes de força bruta com wordlists
+- Análise de padrões de senha
 
 ## Estrutura do Projeto
 
 ```
 aircrack-advanced-mcp/
 ├── aircrack_advanced_mcp_server.py    # Servidor MCP principal
-├── honeypot_setup.sh                  # Script de honeypot WiFi
-├── honeypot_monitor.py                # Monitor do honeypot
 ├── data/
 │   ├── authorization.txt              # Arquivo de autorização
 │   ├── captures/                      # Capturas .cap/.pcap
